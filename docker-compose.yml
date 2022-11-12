@@ -9,11 +9,6 @@ services:
     volumes:
       - ./www:/var/www
       - ./nginx/dev.conf:/etc/nginx/conf.d/default.conf
-    healthcheck:
-      test: ["CMD-SHELL", "curl -sS http://nginx | grep -c works > /dev/null"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
     links:
       - php
 
@@ -24,3 +19,8 @@ services:
     volumes:
       - ./www:/var/www
     container_name: php
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sS http://nginx | grep -c works > /dev/null"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
